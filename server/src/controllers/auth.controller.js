@@ -32,4 +32,4 @@ const authController = {
   },
 };
 
-export default authController;
+export default Object.freeze(authController);

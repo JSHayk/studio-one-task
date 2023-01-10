@@ -5,7 +5,7 @@ const { dbConfig } = config;
 // DB connection configuration
 async function connect() {
   try {
-    await mongoose.connect(dbConfig.db_uri);
+    const db = await mongoose.connect(dbConfig.db_uri);
     console.log("DB is connected!");
   } catch (err) {
     throw new Error(err.message);

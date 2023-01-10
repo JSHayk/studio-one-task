@@ -6,7 +6,7 @@ const config = {
   appConfig: {
     port: env.PORT || 8000,
     sync_interval: env.SYNC_INTERVAL || 10000,
-    client_url: env.CLIENT_URL,
+    client_url: env.CLIENT_URL || "http://localhost:3000",
   },
   dbConfig: {
     db_uri: env.DB_URI,
@@ -19,6 +19,9 @@ const config = {
     max_age: 30 * 24 * 60 * 60 * 1000,
     httpOnly: true,
   },
+  rssConfig: {
+    rss_feed_url: env.RSS_FEED_URL || "",
+  },
 };
 
-export default config;
+export default Object.freeze(config);

@@ -9,14 +9,14 @@ const authMiddleware = {
   },
   checkAuthValidations(req, res, next) {
     const { username, password } = req.body;
-    if (!validations.checkUsernameValidation(username)) {
+    if (!validations.isUsernameValidated(username)) {
       return res.status(422).send({ ms: "Invalid username!" });
     }
-    if (!validations.checkPasswordValidation(password)) {
+    if (!validations.isPasswordValidated(password)) {
       return res.status(422).send({ ms: "Invalid password!" });
     }
     next();
   },
 };
 
-export default authMiddleware;
+export default Object.freeze(authMiddleware);

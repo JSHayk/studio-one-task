@@ -1,17 +1,13 @@
-// State
+import newsService from "../services/news.service.js";
 
-function getState() {
-  return {};
-}
-
-async function sync() {
-  try {
-  } catch (err) {
-    throw new Error(err.message);
-  }
-}
-
-export default {
-  getState,
-  sync,
+const store = {
+  async sync() {
+    try {
+      await newsService.syncNews();
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  },
 };
+
+export default Object.freeze(store);

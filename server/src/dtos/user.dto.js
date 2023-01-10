@@ -3,4 +3,4 @@ function userDto(data) {
   return rest._doc;
 }
 
-export default userDto;
+export default Object.freeze(userDto);

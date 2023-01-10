@@ -54,4 +54,4 @@ const authService = {
   },
 };
 
-export default authService;
+export default Object.freeze(authService);

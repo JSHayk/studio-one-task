@@ -14,4 +14,4 @@ const tokenService = {
   },
 };
 
-export default tokenService;
+export default Object.freeze(tokenService);
