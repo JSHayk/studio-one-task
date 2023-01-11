@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import query from "../db/query.js";
 import newsModel from "../db/models/news.model.js";
 import rssService from "./rss.service.js";
@@ -38,13 +39,23 @@ const newsService = {
     invalidArguments([newsId, userId, keywords]);
     try {
       const [news] = await query.get(newsModel, { newsId });
+      const check = generalService.checkExist(
+        news,
+        "news",
+        "There is no news with this id",
+        "The keywords have been added"
+      );
+      if (!check.isExist) return check;
       news.keywords = [
         ...news.keywords,
         {
-          user_id: userId,
+          _id: new mongoose.Types.ObjectId(),
           keywords,
+          user_id: userId,
         },
       ];
+      await news.save();
+      return check;
     } catch (err) {
       throw new Error(err.message);
     }

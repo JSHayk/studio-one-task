@@ -10,6 +10,11 @@ router.get("/news", newsController.getAllNews);
 // Geting special news
 router.get("/news/:id", checkIdParam, newsController.getNews);
 // Adding keywords
-router.post("/news/keywords/:id/:userId", checkIdParam, checkEmptyBody);
+router.post(
+  "/news/keywords/:newsId/:userId",
+//   checkIdParam,
+  checkEmptyBody,
+  newsController.addKeywords
+);
 
 export default router;

@@ -15,9 +15,15 @@ const newsController = {
     }
   },
   async addKeywords(req, res) {
-    const { id, userId } = req.params;
+    const { userId, newsId } = req.params;
     const { keywords } = req.body;
     try {
+      const { sc, ms } = await newsService.addKeywords(
+        newsId,
+        userId,
+        keywords
+      );
+      res.status(sc).send({ ms });
     } catch (err) {
       throw new Error(err.message);
     }
