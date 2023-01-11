@@ -34,17 +34,34 @@ const newsService = {
       throw new Error(err.message);
     }
   },
+  async addKeywords(newsId, userId, keywords) {
+    invalidArguments([newsId, userId, keywords]);
+    try {
+      const [news] = await query.get(newsModel, { newsId });
+      news.keywords = [
+        ...news.keywords,
+        {
+          user_id: userId,
+          keywords,
+        },
+      ];
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  },
 
   async syncNews() {
     await newsModel.deleteMany({});
     const rssFeed = await rssService.convertRss();
-    rssFeed.map(async (item) => {
-      try {
-        await this.addNews(item);
-      } catch (err) {
-        throw new Error(err.message);
-      }
-    });
+    await Promise.all(
+      rssFeed.map(async (item) => {
+        try {
+          await this.addNews(item);
+        } catch (err) {
+          throw new Error(err.message);
+        }
+      })
+    );
   },
 };
 

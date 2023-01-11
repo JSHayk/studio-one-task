@@ -14,6 +14,14 @@ const newsController = {
       throw new Error(err.message);
     }
   },
+  async addKeywords(req, res) {
+    const { id, userId } = req.params;
+    const { keywords } = req.body;
+    try {
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  },
 };
 
 export default Object.freeze(newsController);

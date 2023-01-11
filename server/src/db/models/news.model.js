@@ -1,6 +1,10 @@
 import { model, Schema } from "mongoose";
 
 const schema = new Schema({
+  keywords: {
+    type: JSON,
+    default: [],
+  },
   title: {
     type: String,
     required: true,
