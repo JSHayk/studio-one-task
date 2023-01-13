@@ -9,7 +9,7 @@ const schema = new Schema({
     type: String,
     required: true,
   },
-  isOnline: {
+  is_online: {
     type: Boolean,
     required: true,
     default: false,

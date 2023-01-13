@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { BrowserRouter } from "react-router-dom";
 import AppRouter from "./router/AppRouter";
 
@@ -9,4 +10,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default memo(App);

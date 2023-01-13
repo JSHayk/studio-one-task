@@ -1,7 +1,21 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
+// Slices
+import authReducer from "./slices/auth.slice";
+import newsReducer from "./slices/news.slice";
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    auth: authReducer,
+    news: newsReducer,
+  },
 });
 
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;
 export default store;

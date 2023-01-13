@@ -12,7 +12,7 @@ const authService = {
       const [user] = await query.get(userModel, { username });
       if (user)
         return {
-          sc: 404,
+          sc: 403,
           ms: "The username is already exist",
         };
       const hashedPassword = await bcrypt.hash(plainPassword, 10);
@@ -33,7 +33,7 @@ const authService = {
     invalidArguments([username, plainPassword]);
     try {
       const [user] = await query.get(userModel, { username });
-      if (!user) return { sc: 404, ms: "There is no user with this username" };
+      if (!user) return { sc: 403, ms: "There is no user with this username" };
       if (!(await bcrypt.compare(plainPassword, user.password)))
         return {
           sc: 404,

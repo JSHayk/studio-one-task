@@ -1,0 +1,62 @@
+.auth-form {
+  height: 460px;
+  max-width: 480px;
+  margin-top: 16px;
+  border-radius: 8px;
+  margin: auto;
+  background-color: #fff;
+  box-sizing: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  .title {
+    text-align: center;
+    font-size: 28px;
+  }
+  &-container {
+    margin-top: 24px;
+    padding: 8px 42px;
+    display: flex;
+    flex-direction: column;
+  }
+  &-fields {
+    .input {
+      width: 100%;
+      background-color: #fff;
+      border: solid 1px #c5c5c5;
+      height: 50px;
+      padding: 8px;
+      outline: none;
+      letter-spacing: 0.9px;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 6px;
+      color: #ccc;
+      &:not(:first-child) {
+        margin-top: 18px;
+      }
+    }
+  }
+  .button-container {
+    margin-top: 24px;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    .button {
+      cursor: pointer;
+      outline: none;
+      background-color: rgb(13, 92, 1);
+      color: #fff;
+      font-size: 18px;
+      text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+      width: 180px;
+      height: 50px;
+      border: none;
+      border-radius: 5px;
+    }
+  }
+  .question {
+    margin-top: 14px;
+    color: rgb(13, 92, 1);
+  }
+}
