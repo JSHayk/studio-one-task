@@ -5,6 +5,7 @@ import Router from "../const/router";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
+import NewsSpecific from "../components/NewsSpecific";
 
 const AppRouter = () => {
   return (
@@ -12,6 +13,7 @@ const AppRouter = () => {
       <Route path={Router.HOME} element={<HomePage />} />
       <Route path={Router.REGISTER} element={<RegisterPage />} />
       <Route path={Router.LOGIN} element={<LoginPage />} />
+      <Route path={Router.NEWS_SPECIFIC} element={<NewsSpecific />} />
     </Routes>
   );
 };

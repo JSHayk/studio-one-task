@@ -19,7 +19,7 @@ const Login = () => {
       try {
         const { user, token } = await $Login(sendData);
         dispatch(addUser({ data: user, token }));
-        toast.success("Successfully registered!", {
+        toast.success("Successfully Loged!", {
           position: toast.POSITION.TOP_RIGHT,
         });
         setTimeout(() => {

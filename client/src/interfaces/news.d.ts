@@ -12,8 +12,13 @@ export interface INews {
 
 export interface INewsState {
   data: INews[] | null;
+  specificData: INews | null;
+
 }
 
 export interface IAddNews {
   payload: INews[];
+}
+export interface IAddSpecificNews {
+  payload: INews
 }

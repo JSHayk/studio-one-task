@@ -12,7 +12,6 @@ router.get("/news/:id", checkIdParam, newsController.getNews);
 // Adding keywords
 router.post(
   "/news/keywords/:newsId/:userId",
-//   checkIdParam,
   checkEmptyBody,
   newsController.addKeywords
 );

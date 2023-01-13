@@ -1,4 +1,6 @@
 import { FC, memo } from "react";
+import { useNavigate } from "react-router-dom";
+import Router from "../../const/router";
 // Common
 import Container from "../../common/Container";
 import Image from "../../common/Image";
@@ -12,8 +14,12 @@ interface INewsItem {
 }
 
 const NewsItem: FC<INewsItem> = ({ id, title, pubDate }) => {
+  const navigate = useNavigate();
   return (
     <Container
+      click={() => {
+        navigate(`${Router.NEWS}/${id}`);
+      }}
       key={id}
       className="news-container-item small-item" // {randomNum === 1 ? "news-container-item" : "small-item"}
     >

@@ -10,7 +10,7 @@ export interface ILoginResponse {
   user: IUser;
 }
 export interface IRegisterResponse {
-  message: string;
+  ms: string;
 }
 // Slice
 export interface IAuthState {

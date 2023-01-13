@@ -23,6 +23,8 @@ const Register = () => {
           navigate(Router.LOGIN);
         }, 2600);
       } catch (err: any) {
+        console.log("mtav");
+
         toast.error("Invalid Fileds!", {
           position: toast.POSITION.TOP_RIGHT,
         });

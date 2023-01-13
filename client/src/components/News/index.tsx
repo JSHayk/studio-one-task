@@ -2,10 +2,10 @@ import { memo, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
 import { $GetNews } from "../../api";
 import { addNews } from "../../store/slices/news.slice";
+import NewsItem from "./NewsItem";
 // Common
 import Container from "../../common/Container";
 import Section from "../../common/Section";
-import NewsItem from "./NewsItem";
 import "./index.scss";
 
 const News = () => {
@@ -22,6 +22,7 @@ const News = () => {
       }
     };
     getNews();
+    setInterval(getNews, 7000);
   }, [dispatch]);
 
   return (

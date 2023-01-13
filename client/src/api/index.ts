@@ -33,6 +33,7 @@ $api.interceptors.request.use(
   }
 );
 
+// Auth
 export const $Login = async (sendData: IAuthRequest) => {
   try {
     const { data } = await $api.post<ILoginResponse>(Router.LOGIN, sendData);
@@ -43,18 +44,24 @@ export const $Login = async (sendData: IAuthRequest) => {
 };
 export const $Register = async (sendData: IAuthRequest) => {
   try {
-    const { data } = await $api.post<IRegisterResponse>(
-      Router.REGISTER,
-      sendData
-    );
+    const {data} = await $api.post<IRegisterResponse>(Router.REGISTER, sendData);
     return data;
   } catch (err: any) {
     throw new Error(err);
   }
 };
+// News
 export const $GetNews = async () => {
   try {
     const { data } = await $api.get<INews[]>(Router.NEWS);
+    return data;
+  } catch (err: any) {
+    throw new Error(err);
+  }
+};
+export const $GetSpecificNews = async (id: string) => {
+  try {
+    const { data } = await $api.get<INews>(`${Router.NEWS}/${id}`);
     return data;
   } catch (err: any) {
     throw new Error(err);
