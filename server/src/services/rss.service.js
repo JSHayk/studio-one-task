@@ -1,6 +1,5 @@
 import Parser from "rss-parser";
 import config from "../config/config.js";
-import newsModel from "../db/models/news.model.js";
 
 const {
   rssConfig: { rss_feed_url },

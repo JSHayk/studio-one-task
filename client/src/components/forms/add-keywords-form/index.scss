@@ -1,0 +1,28 @@
+.add-keywords {
+  .input {
+    width: 240px;
+    height: 42px;
+    border: none;
+    border-radius: 6px;
+    padding: 8px;
+    box-sizing: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    font-size: 16px;
+    font-weight: 600;
+    outline: none;
+  }
+  .button {
+    width: 120px;
+    height: 42px;
+    border: none;
+    font-size: 16px;
+    background-color: rgb(13, 92, 1);
+    border-radius: 0 6px 6px 0;
+    color: #fff;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .edit-button {
+    background-color: rgb(201, 154, 27);
+  }
+}

@@ -22,9 +22,7 @@ const Login = () => {
         toast.success("Successfully Loged!", {
           position: toast.POSITION.TOP_RIGHT,
         });
-        setTimeout(() => {
-          navigate(Router.HOME);
-        }, 2600);
+        navigate(Router.HOME);
       } catch (err: any) {
         toast.error("Invalid Fileds!", {
           position: toast.POSITION.TOP_RIGHT,

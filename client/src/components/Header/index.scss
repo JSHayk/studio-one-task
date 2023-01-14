@@ -16,4 +16,11 @@
       width: auto;
     }
   }
+  .row {
+    .logo {
+      &:last-child {
+        margin-left: 16px;
+      }
+    }
+  }
 }

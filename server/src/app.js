@@ -18,7 +18,7 @@ app.use(cookieParser()); // Saving tokens in cookies
 app.use("/api", router); // Switching all routes by '/api'
 
 // App Configuration
-setInterval(store.sync, sync_interval);
+// setInterval(store.sync, sync_interval);
 (async () => {
   try {
     await connect(); // Connecting to DB

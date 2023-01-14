@@ -28,6 +28,29 @@ const newsController = {
       throw new Error(err.message);
     }
   },
+  async editKeywords(req, res) {
+    const { newsId, keywordsId } = req.params;
+    const { keywords } = req.body;
+    try {
+      const { sc, ms } = await newsService.editKeywords(
+        newsId,
+        keywordsId,
+        keywords
+      );
+      res.status(sc).send({ ms });
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  },
+  async deleteKeywords(req, res) {
+    const { newsId, keywordsId } = req.params;
+    try {
+      const { sc, ms } = await newsService.deleteKeywords(newsId, keywordsId);
+      res.status(sc).send({ ms });
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  },
 };
 
 export default Object.freeze(newsController);

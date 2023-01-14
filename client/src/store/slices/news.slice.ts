@@ -1,13 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  IAddNews,
-  IAddSpecificNews,
-  INewsState,
-} from "../../interfaces/news";
+import { IAddNews, IAddSpecificNews, INewsState } from "../../interfaces/news";
 
 const initialState: INewsState = {
   data: null,
   specificData: null,
+  isEdit: false,
 };
 
 const newsSlice = createSlice({
@@ -22,8 +19,15 @@ const newsSlice = createSlice({
         ...payload,
       };
     },
+    activateEdit(state) {
+      state.isEdit = true;
+    },
+    disableEdit(state) {
+      state.isEdit = false;
+    },
   },
 });
 
-export const { addNews, addSpecificNews } = newsSlice.actions;
+export const { addNews, addSpecificNews, activateEdit, disableEdit } =
+  newsSlice.actions;
 export default newsSlice.reducer;

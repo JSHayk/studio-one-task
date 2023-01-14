@@ -3,7 +3,9 @@ interface IRouter {
   LOGIN: string;
   REGISTER: string;
   NEWS: string;
-  NEWS_SPECIFIC: string
+  NEWS_SPECIFIC: string;
+  KEYWORDS: string;
+  PROFILE: string;
 }
 
 const Router: IRouter = {
@@ -11,7 +13,9 @@ const Router: IRouter = {
   LOGIN: "/login",
   REGISTER: "/register",
   NEWS: "/news",
-  NEWS_SPECIFIC: "/news/:id"
+  NEWS_SPECIFIC: "/news/:id",
+  KEYWORDS: "/news/keywords",
+  PROFILE: "/profile",
 };
 
 export default Router;

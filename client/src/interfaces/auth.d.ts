@@ -9,7 +9,7 @@ export interface ILoginResponse {
   token: string;
   user: IUser;
 }
-export interface IRegisterResponse {
+export interface IMessageResponse {
   ms: string;
 }
 // Slice
@@ -22,4 +22,7 @@ export interface IAddUser {
     data: IUser;
     token: string;
   };
+}
+export interface IKeywordsRequest {
+  keywords: string;
 }

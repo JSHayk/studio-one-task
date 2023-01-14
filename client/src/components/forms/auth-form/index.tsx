@@ -10,6 +10,7 @@ import Button from "../../../common/Button";
 import Container from "../../../common/Container";
 import Text from "../../../common/Text";
 import "./index.scss";
+import resetForm from "../../../helpers/resetForm";
 
 interface IAuthForm {
   title?: string;
@@ -38,6 +39,7 @@ const AuthForm: FC<IAuthForm> = ({
       submit={(e: ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
         submitForm!(sendData);
+        resetForm([setUsername, setPassword]);
       }}
       className="auth-form"
     >

@@ -22,7 +22,7 @@ const News = () => {
       }
     };
     getNews();
-    setInterval(getNews, 7000);
+    // setInterval(getNews, 7000);
   }, [dispatch]);
 
   return (

@@ -1,6 +1,10 @@
 export interface INews {
   _id: string;
-  keywords: {}[];
+  keywords: {
+    _id: string;
+    keywords: string;
+    user_id: string;
+  }[];
   title: string;
   link: string;
   pubDate: string;
@@ -13,12 +17,12 @@ export interface INews {
 export interface INewsState {
   data: INews[] | null;
   specificData: INews | null;
-
+  isEdit: boolean;
 }
 
 export interface IAddNews {
   payload: INews[];
 }
 export interface IAddSpecificNews {
-  payload: INews
+  payload: INews;
 }
