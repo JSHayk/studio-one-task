@@ -30,6 +30,10 @@ const authController = {
       throw new Error(err.message);
     }
   },
+  logout(req, res) {
+    res.clearCookie("token");
+    res.status(200).send({ sc: "You have been logouted!" });
+  },
 };
 
 export default Object.freeze(authController);

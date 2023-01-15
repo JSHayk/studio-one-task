@@ -1,7 +1,7 @@
 import express from "express";
 import newsController from "../controllers/news.controller.js";
 import generalMiddleware from "../middlewares/general.middleware.js";
-import generalService from "../services/general.service.js";
+import newsMiddleware from "../middlewares/news.middleware.js";
 
 const { checkIdParam, checkEmptyBody } = generalMiddleware;
 
@@ -13,14 +13,25 @@ router.get("/news/:id", checkIdParam, newsController.getNews);
 // Adding keywords
 router.post(
   "/news/keywords/:newsId/:userId",
+  checkIdParam,
   checkEmptyBody,
+  newsMiddleware.checkNewsBody,
+  newsMiddleware.checkNewsValidations,
   newsController.addKeywords
 );
 // Editing keywords
-router.put("/news/keywords/:newsId/:keywordsId", newsController.editKeywords);
+router.put(
+  "/news/keywords/:newsId/:keywordsId",
+  checkIdParam,
+  checkEmptyBody,
+  newsMiddleware.checkNewsBody,
+  newsMiddleware.checkNewsValidations,
+  newsController.editKeywords
+);
 // Deleting keywords
 router.delete(
   "/news/keywords/:newsId/:keywordsId",
+  checkIdParam,
   generalMiddleware.checkEmptyBody,
   newsController.deleteKeywords
 );

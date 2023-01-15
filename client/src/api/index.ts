@@ -54,6 +54,14 @@ export const $Register = async (sendData: IAuthRequest) => {
     throw new Error(err);
   }
 };
+export const $Logout = async () => {
+  try {
+    const { data } = await $api.get<IMessageResponse>(Router.LOGOUT);
+    return data;
+  } catch (err: any) {
+    throw new Error(err);
+  }
+};
 // News
 export const $GetNews = async () => {
   try {

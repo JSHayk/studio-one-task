@@ -1,0 +1,44 @@
+.not-found {
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  height: 100vh;
+  &-info {
+    .row {
+      align-items: center;
+      .title {
+        color: #2a464f;
+        font-size: 60px;
+      }
+      .text {
+        margin: 20px 0 0 14px;
+        color: #8b8b8e;
+        font-size: 28px;
+        font-weight: 400;
+      }
+    }
+    &-back {
+      display: flex;
+      align-items: center;
+      font-size: 28px;
+      .text {
+        color: #c2c6cf;
+      }
+      a {
+        margin-left: 18px;
+        color: #d269cc;
+        border-bottom: solid 2px;
+      }
+    }
+    .description {
+      color: #2a464f;
+      font-size: 28px;
+      max-width: 270px;
+    }
+  }
+  &-image {
+    margin-left: 48px;
+  }
+}

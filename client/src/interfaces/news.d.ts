@@ -18,6 +18,8 @@ export interface INewsState {
   data: INews[] | null;
   specificData: INews | null;
   isEdit: boolean;
+  isLoading: boolean;
+  isSpecificLoading: boolean;
 }
 
 export interface IAddNews {

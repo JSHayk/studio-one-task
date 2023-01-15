@@ -8,6 +8,7 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import ProfilePage from "../pages/ProfilePage";
 import NewsSpecificPage from "../pages/NewsSpecificPage";
+import NotFoundPage from "../pages/NotFoundPage";
 
 const AppRouter = () => {
   const isLoged = useAppSelector((state) => state.auth.isLoged);
@@ -22,6 +23,7 @@ const AppRouter = () => {
       )}
       <Route path={Router.NEWS_SPECIFIC} element={<NewsSpecificPage />} />
       {isLoged && <Route path={Router.PROFILE} element={<ProfilePage />} />}
+      <Route path={Router.NOT_FOUND} element={<NotFoundPage />} />
     </Routes>
   );
 };

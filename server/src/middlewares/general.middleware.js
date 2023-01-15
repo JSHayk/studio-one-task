@@ -8,9 +8,17 @@ const generalMiddleware = {
     next();
   },
   checkIdParam(req, res, next) {
-    const { id } = req.params;
-    if (!validations.isIdValidated(id)) {
-      return res.status(404).send({ ms: "Invalid Id!" });
+    let checked = true;
+    Object.entries(req.params).forEach((item) => {
+      const [key, value] = item;
+      if (key.toLowerCase().includes("id")) {
+        if (!validations.isIdValidated(value)) {
+          checked = false;
+        }
+      }
+    });
+    if (!checked) {
+      return res.status(404).send({ ms: "Invalid id!" });
     }
     next();
   },

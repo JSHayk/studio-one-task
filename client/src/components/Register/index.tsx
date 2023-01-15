@@ -26,6 +26,8 @@ const Register = () => {
         toast.error("Invalid Fileds!", {
           position: toast.POSITION.TOP_RIGHT,
         });
+        console.log(err.statusCode);
+
         throw new Error(err);
       }
     },

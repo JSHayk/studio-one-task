@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
 import {
   activateEdit,
   addSpecificNews,
-  disableEdit,
+  cancelEdit,
 } from "../../store/slices/news.slice";
 import {
   $AddKeywords,
@@ -13,6 +13,7 @@ import {
   $EditKeywords,
   $GetSpecificNews,
 } from "../../api";
+import { loaded, unloaded } from "../../store/slices/general.slice";
 import { IKeywordsRequest } from "../../interfaces/auth";
 import AddKeywordsForm from "../forms/add-keywords-form";
 import EditKeywordsForm from "../forms/edit-keywords-form";
@@ -30,11 +31,11 @@ const NewsSpecific = () => {
   const [keywordsId, setKeywordsId] = useState<string>("");
   const {
     auth: { isLoged, data: userData },
-    news: { specificData: newsData, isEdit },
+    news: { specificData: newsData, isEdit, isSpecificLoading },
   } = useAppSelector((state) => state)!;
   const dispatch = useAppDispatch();
   const userId = userData?._id;
-  const { content, link, title, pubDate, keywords } = newsData! || {};
+  const { content, title, pubDate, keywords } = newsData! || {};
 
   const submitForm = useCallback(
     async (sendData: IKeywordsRequest) => {
@@ -57,7 +58,6 @@ const NewsSpecific = () => {
     },
     [newsId, userId]
   );
-
   const deleteKeywords = useCallback(
     async (keywordId: string) => {
       try {
@@ -74,7 +74,6 @@ const NewsSpecific = () => {
     },
     [newsId]
   );
-
   const editKeywords = useCallback(
     async (editData: IKeywordsRequest) => {
       if (!editData?.keywords.trim()) {
@@ -87,7 +86,6 @@ const NewsSpecific = () => {
         toast.success(ms, {
           position: toast.POSITION.TOP_RIGHT,
         });
-        dispatch(disableEdit());
       } catch (err: any) {
         toast.error("Something went wrong", {
           position: toast.POSITION.TOP_RIGHT,
@@ -101,8 +99,10 @@ const NewsSpecific = () => {
   useEffect(() => {
     const getSpecificNews = async () => {
       try {
+        // dispatch(unloaded());
         const data = await $GetSpecificNews(newsId!);
         dispatch(addSpecificNews(data));
+        // dispatch(loaded());
       } catch (err: any) {
         throw new Error(err);
       }
@@ -111,57 +111,73 @@ const NewsSpecific = () => {
   }, [dispatch, newsId]);
 
   return (
-    <Section className="news-specific">
-      <Container className="news-specific-container wrapper">
-        <Container className="news-specific-container-image">
-          <Title>{title}</Title>
-          <Image src="https://discussion.qodeinteractive.com/wp-content/uploads/2016/02/mustang-teases-new-model-with-powerful-promo.jpg" />
-        </Container>
-        <Text className="description">{content}</Text>
-        <Container className="news-specific-container-date">
-          <Text className="date">{pubDate}</Text>
-          {/* <a href="https://facebook.com" target="_blank" rel="noreferrer">
-            f
-          </a> */}
-        </Container>
-        {isLoged &&
-          (isEdit ? (
-            <EditKeywordsForm submitForm={editKeywords} />
-          ) : (
-            <AddKeywordsForm submitForm={submitForm} />
-          ))}
-        <Container className="keywords">
-          {keywords?.map((item) => {
-            const { _id, keywords } = item;
-            return (
-              <Container className="keyword">
-                <Text key={_id}>{keywords}</Text>
-                <Container className="keyword-manage">
-                  <Button
-                    click={() => {
-                      deleteKeywords(_id);
-                    }}
-                    className="delete"
-                  >
-                    Delete
-                  </Button>
-                  <Button
-                    click={() => {
-                      setKeywordsId(_id);
-                      dispatch(activateEdit());
-                    }}
-                    className="edit"
-                  >
-                    Edit
-                  </Button>
-                </Container>
-              </Container>
-            );
-          })}
-        </Container>
-      </Container>
-      <ToastContainer />
-    </Section>
+    <>
+      {isSpecificLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <Section className="news-specific">
+          <Container className="news-specific-container wrapper">
+            <Container className="news-specific-container-image">
+              <Title>{title}</Title>
+              <Image src="https://discussion.qodeinteractive.com/wp-content/uploads/2016/02/mustang-teases-new-model-with-powerful-promo.jpg" />
+            </Container>
+            <Text className="description">{content}</Text>
+            <Container className="news-specific-container-date">
+              <Text className="date">{pubDate}</Text>
+            </Container>
+            {isLoged &&
+              (isEdit ? (
+                <EditKeywordsForm submitForm={editKeywords} />
+              ) : (
+                <AddKeywordsForm submitForm={submitForm} />
+              ))}
+            <Container className="keywords">
+              {keywords?.map((item) => {
+                const { _id, keywords } = item;
+                return (
+                  <Container className="keyword">
+                    <Text key={_id}>{keywords}</Text>
+                    {isLoged && (
+                      <Container className="keyword-manage">
+                        <Button
+                          click={() => {
+                            deleteKeywords(_id);
+                          }}
+                          className="delete"
+                        >
+                          Delete
+                        </Button>
+                        {isEdit ? (
+                          <Button
+                            click={() => {
+                              dispatch(cancelEdit());
+                            }}
+                            className="cancel"
+                          >
+                            Cancel
+                          </Button>
+                        ) : (
+                          <Button
+                            click={() => {
+                              setKeywordsId(_id);
+                              dispatch(activateEdit());
+                            }}
+                            className="edit"
+                          >
+                            Edit
+                          </Button>
+                        )}
+                      </Container>
+                    )}
+                  </Container>
+                );
+              })}
+            </Container>
+          </Container>
+          <ToastContainer />
+        </Section>
+      )}
+    </>
   );
 };
 
