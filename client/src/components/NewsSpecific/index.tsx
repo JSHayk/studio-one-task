@@ -86,6 +86,7 @@ const NewsSpecific = () => {
         toast.success(ms, {
           position: toast.POSITION.TOP_RIGHT,
         });
+        dispatch(cancelEdit());
       } catch (err: any) {
         toast.error("Something went wrong", {
           position: toast.POSITION.TOP_RIGHT,

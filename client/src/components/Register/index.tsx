@@ -15,18 +15,19 @@ const Register = () => {
     async (sendData: IAuthRequest) => {
       if (!checkAuthValidations(sendData)) return;
       try {
-        await $Register(sendData);
-        toast.success("Successfully registered!", {
+        const { ms } = await $Register(sendData);
+        toast.success(ms, {
           position: toast.POSITION.TOP_RIGHT,
         });
         setTimeout(() => {
           navigate(Router.LOGIN);
         }, 2600);
       } catch (err: any) {
+        console.log(err, "err");
+
         toast.error("Invalid Fileds!", {
           position: toast.POSITION.TOP_RIGHT,
         });
-        console.log(err.statusCode);
 
         throw new Error(err);
       }
